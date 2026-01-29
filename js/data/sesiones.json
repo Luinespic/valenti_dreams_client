@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "nombre": "Viaje al Ser Interno",
+    "precio": 105,
+    "descripcion": "Sesión guiada de introspección profunda para conectar con tu esencia interior."
+  },
+  {
+    "id": 2,
+    "nombre": "Meditación del Despertar",
+    "precio": 200,
+    "descripcion": "Experiencia meditativa enfocada en la expansión de la conciencia y la claridad mental."
+  },
+  {
+    "id": 3,
+    "nombre": "Conexión SupraConsciente",
+    "precio": 205,
+    "descripcion": "Sesión avanzada para acceder a estados elevados de percepción y comprensión."
+  },
+  {
+    "id": 4,
+    "nombre": "Sanación Energética Colectiva",
+    "precio": 150,
+    "descripcion": "Trabajo grupal de armonización energética y liberación de bloqueos emocionales."
+  },
+  {
+    "id": 5,
+    "nombre": "Apertura de Registros Internos",
+    "precio": 180,
+    "descripcion": "Exploración guiada de memorias internas para el autoconocimiento y la evolución personal."
+  },
+  {
+    "id": 6,
+    "nombre": "Viaje Onírico Consciente",
+    "precio": 130,
+    "descripcion": "Sesión enfocada en la interpretación y vivencia consciente del mundo de los sueños."
+  }
+]
