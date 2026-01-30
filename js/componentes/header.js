@@ -5,11 +5,12 @@ import { obtenerCarrito } from "../funciones/storage.js";
 
 let btnInicio, btnSesiones, btnCarrito;
 
-export function renderHeader(app, main) {
-  const header = document.createElement("header");
+export function renderHeader(body) {
+  const header = document.querySelector("header");
 
   const titulo = document.createElement("h2");
   titulo.textContent = "Sueños Valenti";
+  titulo.style.cursor = "pointer";
 
   const nav = document.createElement("nav");
   btnInicio = document.createElement("button");
@@ -24,11 +25,11 @@ export function renderHeader(app, main) {
 
   nav.append(btnInicio, btnSesiones, btnCarrito);
   header.append(titulo, nav);
-  app.prepend(header);
 
-  btnInicio.addEventListener("click", () => renderInicio(main));
-  btnSesiones.addEventListener("click", () => renderSesiones(main));
-  btnCarrito.addEventListener("click", () => renderCarrito(main));
+  titulo.addEventListener("click", () => renderInicio());
+  btnInicio.addEventListener("click", () => renderInicio());
+  btnSesiones.addEventListener("click", () => renderSesiones());
+  btnCarrito.addEventListener("click", () => renderCarrito());
 }
 
 export function actualizarContadorCarrito() {

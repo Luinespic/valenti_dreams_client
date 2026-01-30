@@ -3,15 +3,16 @@ import { añadirAlCarrito } from "../funciones/storage.js";
 import { actualizarContadorCarrito } from "../componentes/header.js";
 import { crearContenedor } from "../funciones/utils.js";
 
-export async function renderSesiones(main) {
-  main.innerHTML = "";
+export async function renderSesiones() {
+  const contenedor = crearContenedor("main", "Sesiones disponibles");
 
-  const contenedor = crearContenedor("Sesiones disponibles");
+  const section = document.createElement("section");
+  section.classList.add("sesiones-lista");
 
   const sesiones = await fetchSesiones();
-  const grid = document.createElement("section");
   sesiones.forEach((sesion) => {
-    const card = document.createElement("article");
+    const tarjeta = document.createElement("article");
+    tarjeta.classList.add("tarjeta-sesion");
 
     const nombre = document.createElement("h3");
     nombre.textContent = sesion.nombre;
@@ -24,16 +25,13 @@ export async function renderSesiones(main) {
 
     const btnAñadir = document.createElement("button");
     btnAñadir.textContent = "Añadir al carrito";
-
     btnAñadir.addEventListener("click", () => {
       añadirAlCarrito(sesion);
       actualizarContadorCarrito();
     });
 
-    card.append(nombre, descripcion, precio, btnAñadir);
-    grid.append(card);
+    tarjeta.append(nombre, descripcion, precio, btnAñadir);
+    section.append(tarjeta);
+    contenedor.append(section);
   });
-
-  contenedor.append(grid);
-  main.append(contenedor);
 }

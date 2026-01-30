@@ -6,11 +6,11 @@ import {
 import { actualizarContadorCarrito } from "../componentes/header.js";
 import { crearContenedor } from "../funciones/utils.js";
 
-export function renderCarrito(main) {
-  main.innerHTML = "";
+export function renderCarrito() {
+  const contenedor = crearContenedor("main", "Tu Carrito");
 
-  const contenedor = crearContenedor("Carrito espiritual");
-
+  const section = document.createElement("section");
+  section.classList.add("carrito-lista");
   const carrito = obtenerCarrito();
 
   if (carrito.length === 0) {
@@ -18,32 +18,31 @@ export function renderCarrito(main) {
     mensaje.textContent = "No hay sesiones en el carrito.";
     contenedor.append(mensaje);
   } else {
-    const lista = document.createElement("ul");
+    let total = 0;
 
     carrito.forEach((sesion) => {
-      const item = document.createElement("li");
+      total += sesion.precio * sesion.cantidad;
 
-      const nombre = document.createElement("span");
-      nombre.textContent = sesion.nombre;
+      const item = document.createElement("article");
+      item.classList.add("item-carrito");
 
-      const cantidadPrecio = document.createElement("span");
-      cantidadPrecio.textContent = `${sesion.cantidad} x ${sesion.precio} €`;
+      const info = document.createElement("div");
+      info.innerHTML = `<span class="nombre">${sesion.nombre}</span> x${sesion.cantidad} - <span class="precio">${sesion.precio * sesion.cantidad} €</span>`;
 
       const btnEliminar = document.createElement("button");
       btnEliminar.textContent = "Eliminar";
       btnEliminar.addEventListener("click", () => {
         eliminarDelCarrito(sesion.id);
-        renderCarrito(main);
+        renderCarrito();
         actualizarContadorCarrito();
       });
 
-      item.append(nombre, cantidadPrecio, btnEliminar);
-      lista.append(item);
+      item.append(info, btnEliminar);
+      section.append(item);
     });
 
-    contenedor.append(lista);
-
-    const total = carrito.reduce((acc, s) => acc + s.precio * s.cantidad, 0);
+    const section2 = document.createElement("section");
+    section2.classList.add("total-carrito");
     const totalTexto = document.createElement("h3");
     totalTexto.textContent = `Total: ${total} €`;
 
@@ -51,12 +50,12 @@ export function renderCarrito(main) {
     btnVaciar.textContent = "Vaciar carrito";
     btnVaciar.addEventListener("click", () => {
       vaciarCarrito();
-      renderCarrito(main);
+      renderCarrito();
       actualizarContadorCarrito();
     });
 
-    contenedor.append(totalTexto, btnVaciar);
+    contenedor.append(section);
+    contenedor.append(section2);
+    section2.append(totalTexto, btnVaciar);
   }
-
-  main.append(contenedor);
 }

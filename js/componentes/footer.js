@@ -1,5 +1,4 @@
-export function renderFooter(app) {
-  const footer = document.createElement("footer");
+export function renderFooter(body) {
+  const footer = document.querySelector("footer");
   footer.textContent = "© 2026 Sueños Valenti";
-  app.append(footer);
 }
